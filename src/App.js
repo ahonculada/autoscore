@@ -59,8 +59,10 @@ function App() {
 
   return (
     <div className="App">
+      <div className = "Video">
+            <video onCanPlay = { () => paintToCanvas() } ref={videoRef}/>
+      </div>
       <button onClick = { () => takePhoto() }>Take a photo</button>
-      <video onCanPlay = { () => paintToCanvas() } ref={videoRef}/>
       <canvas ref={photoRef} />
       <div>
         <div ref={stripRef} />
