@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from 'react;
+import React, { useCallback, useRef, useState, useEffect } from 'react'
 import Webcam from "react-webcam";
 
 const WebcamComponent = () => <Webcam />;
@@ -9,7 +9,7 @@ const videoConstraints = {
 	facingMode: "user"
 };
 
-export const WebcamComponent = () => {
+export const WebcamCapture = () => {
 	const [image, setImage]=useState('');
 	const webcamRef = useRef(null);
 
@@ -18,6 +18,10 @@ export const WebcamComponent = () => {
 			const imageSrc = webcamRef.current.getScreenshot();
 			setImage(imageSrc)
 		});
+
+	useEffect(() => {
+		window.localStorage.setItem('image', image);
+		}, [image]);
 
 	return (
 		<div className="webcam-container">
