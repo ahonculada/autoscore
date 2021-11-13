@@ -9,8 +9,8 @@ function OCR() {
   
   const doOCR = async () => {
     await worker.load();
-    await worker.loadLanguage('eng');
-    await worker.initialize('eng');
+    await worker.loadLanguage('eng+equ');
+    await worker.initialize('eng+equ');
     let image = window.localStorage.getItem('image');
     // const { data: { text } } = await worker.recognize('https://tesseract.projectnaptha.com/img/eng_bw.png');
     const { data: { text } } = await worker.recognize(image);
