@@ -4,7 +4,7 @@ import './App.css';
 import { WebcamCapture } from './components/Webcam/Webcam';
 
 function App() {
-  let image = JSON.parse(window.localStorage.getItem('image'));
+  //let image = JSON.parse(window.localStorage.getItem('image'));
 
   // useEffect(() => {
   //   setImage(JSON.parse(window.localStorage.getItem('image')));
