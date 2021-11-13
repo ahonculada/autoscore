@@ -38,7 +38,7 @@ function App() {
 
     console.warn(strip);
 
-    const data = photo.toDataURL("image/jpeg");
+    const data = photo.toDataURL("image/jpeg", 1.0);
 
     console.warn(data);
     const link = document.createElement("a");
