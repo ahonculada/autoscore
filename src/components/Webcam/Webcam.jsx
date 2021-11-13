@@ -1,5 +1,6 @@
 import React, { useCallback, useRef, useState, useEffect } from 'react'
 import Webcam from "react-webcam";
+import OCR from '../OCR';
 
 const WebcamComponent = () => <Webcam />;
 
@@ -16,12 +17,11 @@ export const WebcamCapture = () => {
 	const capture = useCallback(
 		() => {
 			const imageSrc = webcamRef.current.getScreenshot();
+			window.localStorage.setItem('image',imageSrc)
 			setImage(imageSrc)
 		});
 
-	useEffect(() => {
-		window.localStorage.setItem('image', image);
-		}, [image]);
+
 
 	return (
 		<div className="webcam-container">
@@ -47,9 +47,12 @@ export const WebcamCapture = () => {
 						<button onClick={(e) => {
 							e.preventDefault();
 							capture();
+							
 						}}
 							className="webcam-btn">Capture</button>
+							
 				}
+				<OCR/>
 			</div>
 		</div>
 	);
