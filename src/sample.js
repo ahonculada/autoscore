@@ -61,6 +61,7 @@ function App() {
   // };
 
   const [ocr, setOcr] = useState('Recognizing...');
+  setOcr('')
 
   // const videoRef = useRef(null);
   // const photoRef = useRef(null);
