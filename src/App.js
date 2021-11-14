@@ -3,6 +3,7 @@ import { createWorker } from 'tesseract.js';
 //import logo from './logo.svg';
 import './App.css';
 import { WebcamCapture } from './components/Webcam/Webcam';
+import OCR from './components/OCR';
 
 function App () {
   const [source, setSource] = useState("");
@@ -18,9 +19,9 @@ function App () {
     }
   };
 
-  useEffect(() => {
-    <WebcamCapture data = {source}/> 
-		},[source]);
+  // useEffect(() => {
+  //   <WebcamCapture data = {source}/> 
+	// 	},[source]);
 
   return (
     <div className="App">
@@ -30,7 +31,8 @@ function App () {
             capture="environment"
             onChange={(e) => handleCapture(e.target)}
           />
-      
+       {/* <WebcamCapture data = {source}/>  */}
+       <OCR data ={source}/>
     </div>
   );
 }

@@ -43,8 +43,9 @@ export const WebcamCapture = (props) => {
 
 	const capture = useCallback(
 		() => {
-			const imageSrc = webcamRef.current.getScreenshot();
+			// const imageSrc = webcamRef.current.getScreenshot();
 			// window.localStorage.setItem('image',imageSrc)
+			console.log("Here " + props.data)
 			setImage(props.data);
 			// setImage(imageSrc)
 		});

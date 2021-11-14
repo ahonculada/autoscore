@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { createWorker } from 'tesseract.js';
 
-function OCR() {
+function OCR (props) {
 
   const worker = createWorker({
     logger: m => console.log(m),
@@ -13,7 +13,7 @@ function OCR() {
     await worker.initialize('eng+equ');
     let image = window.localStorage.getItem('image');
     // const { data: { text } } = await worker.recognize('https://tesseract.projectnaptha.com/img/eng_bw.png');
-    const { data: { text } } = await worker.recognize(image);
+    const { data: { text } } = await worker.recognize(props.data);
     
     setOcr(text);
   };
@@ -21,7 +21,6 @@ function OCR() {
   
   const [ocr, setOcr] = useState('Recognizing...');
   
-
 
   useEffect(() => {
     doOCR();
