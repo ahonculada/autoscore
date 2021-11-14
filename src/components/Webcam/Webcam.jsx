@@ -36,7 +36,7 @@ const videoConstraints = {
 // 	return windowDimensions;
 // }
 
-export const WebcamCapture = () => {
+export const WebcamCapture = (props) => {
 	const [image, setImage]=useState('');
 	const [crop, setCrop] = useState({});
 	const webcamRef = useRef(null);
@@ -45,7 +45,8 @@ export const WebcamCapture = () => {
 		() => {
 			const imageSrc = webcamRef.current.getScreenshot();
 			// window.localStorage.setItem('image',imageSrc)
-			setImage(imageSrc)
+			setImage(props.data);
+			// setImage(imageSrc)
 		});
 
 	// function CropDemo({ src }) {
@@ -56,8 +57,8 @@ export const WebcamCapture = () => {
 	useEffect(() => {
 		// var canvas = document.getElementById('canvas');
 		// var dataURL = canvas.toDataURL();
-		window.localStorage.setItem('image', {crop})
-		},[crop]);
+		window.localStorage.setItem('image', image)
+		},[image]);
 
 	return (
 		<div className="webcam-container">
@@ -86,9 +87,7 @@ export const WebcamCapture = () => {
 						}}
 							className="webcam-btn">Capture</button>
 				}
-				
-				<ReactCrop src={image} crop={crop} onChange={newCrop => setCrop(newCrop) } />
-				
+								
 				<OCR/>
 				
 		</div>

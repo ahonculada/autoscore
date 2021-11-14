@@ -18,6 +18,10 @@ function App () {
     }
   };
 
+  useEffect(() => {
+    <WebcamCapture data = {source}/> 
+		},[source]);
+
   return (
     <div className="App">
       <input
@@ -26,7 +30,7 @@ function App () {
             capture="environment"
             onChange={(e) => handleCapture(e.target)}
           />
-      <WebcamCapture/> 
+      
     </div>
   );
 }
