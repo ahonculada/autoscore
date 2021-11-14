@@ -26,6 +26,9 @@ function App () {
        if (target.files.length !== 0) {
          const file = target.files[0];
          const newUrl = URL.createObjectURL(file)
+        //  console.log("here you go")
+        //  console.log(newUrl.slice(5,newUrl.length))
+        //  setSource(newUrl.slice(5,newUrl.length))
          setSource(newUrl)
        }
      }
@@ -34,6 +37,10 @@ function App () {
   useEffect(() => {
     setPic(source)
 		},[source]);
+  
+  useEffect(() => {
+    window.localStorage.setItem('image', pic);
+    },[pic]);
 
   return (
     <div className="App">
@@ -42,7 +49,7 @@ function App () {
             type="file"
             capture="environment"
             onChange={(e) => {handleCapture(e.target)
-               e.preventDefault();}}
+               }}
           /> : <OCR data ={pic}/>}
        
     </div>
