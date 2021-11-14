@@ -4,6 +4,7 @@ import ReactCrop from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
 
 import OCR from '../OCR';
+import {getCroppedImg} from '../crop';
 
 const WebcamComponent = () => <Webcam />;
 
@@ -39,12 +40,17 @@ const videoConstraints = {
 export const WebcamCapture = () => {
 	const [image, setImage]=useState('');
 	const [crop, setCrop] = useState({});
+	const [showResults, setShowResults] = useState(false)
+	const [cropImage, setCropImage] = useState('')
+	var croppedImage;
 	const webcamRef = useRef(null);
 
 	const capture = useCallback(
 		() => {
 			const imageSrc = webcamRef.current.getScreenshot();
 			// window.localStorage.setItem('image',imageSrc)
+			// console.log('TYPE OF IMAGESRC'+ typeof(imageSrc));
+			// console.log(imageSrc);
 			setImage(imageSrc)
 		});
 
@@ -56,8 +62,9 @@ export const WebcamCapture = () => {
 	useEffect(() => {
 		// var canvas = document.getElementById('canvas');
 		// var dataURL = canvas.toDataURL();
-		window.localStorage.setItem('image', {crop})
+		window.localStorage.setItem('image', {crop});
 		},[crop]);
+
 
 	return (
 		<div className="webcam-container">
@@ -87,8 +94,19 @@ export const WebcamCapture = () => {
 							className="webcam-btn">Capture</button>
 				}
 				
-				<ReactCrop src={image} crop={crop} onChange={newCrop => setCrop(newCrop) } />
+				<ReactCrop src={image} crop={crop} onChange={newCrop => setCrop(newCrop), setShowResults(true), setCropImage(getCroppedImg(image, crop, 'image'))} />
 				
+				<div className="cropped-img">
+					{/* {croppedImage = setImage(getCroppedImg(image, crop, 'image'))} */}
+					{croppedImage === '' ? <Webcam
+						audio={false}
+						height={window.innerHeight}
+						ref={webcamRef}
+						screenshotFormat="image/png"
+						width={window.innerWidth}
+						videoConstraints={videoConstraints}
+					/> : <img src={croppedImage} alt={''} />}
+				</div>
 				<OCR/>
 				
 			</div>
