@@ -2,12 +2,12 @@ import React, { useCallback, useEffect, useRef,useState } from 'react';
 import { createWorker } from 'tesseract.js';
 //import logo from './logo.svg';
 import './App.css';
-import { WebcamCapture } from './components/Webcam/Webcam';
+// import { WebcamCapture } from './components/Webcam/Webcam';
 import OCR from './components/OCR';
 
 function App () {
   const [source, setSource] = useState("");
-  const[pic, setPic] = useState("")
+  const [pic, setPic] = useState("")
 
 
   // const handleCapture = (target) => {
@@ -29,10 +29,7 @@ function App () {
          setSource(newUrl)
        }
      }
-     
-   }
-   
- );
+   });
 
   useEffect(() => {
     setPic(source)
@@ -40,15 +37,14 @@ function App () {
 
   return (
     <div className="App">
-      <input
+      {pic == "" ? <input
             accept="image/*"
             type="file"
             capture="environment"
             onChange={(e) => {handleCapture(e.target)
                e.preventDefault();}}
-          />
-       {/* <WebcamCapture data = {source}/>  */}
-       <OCR data ={pic}/>
+          /> : <OCR data ={pic}/>}
+       
     </div>
   );
 }
