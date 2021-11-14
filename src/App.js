@@ -7,6 +7,7 @@ import OCR from './components/OCR';
 
 function App () {
   const [source, setSource] = useState("");
+  const[pic, setPic] = useState("")
 
 
   const handleCapture = (target) => {
@@ -19,9 +20,9 @@ function App () {
     }
   };
 
-  // useEffect(() => {
-  //   <WebcamCapture data = {source}/> 
-	// 	},[source]);
+  useEffect(() => {
+    setPic(source)
+		},[source]);
 
   return (
     <div className="App">
@@ -32,7 +33,7 @@ function App () {
             onChange={(e) => handleCapture(e.target)}
           />
        {/* <WebcamCapture data = {source}/>  */}
-       <OCR data ={source}/>
+       <OCR data ={pic}/>
     </div>
   );
 }
