@@ -21,8 +21,15 @@ function App () {
   // };
   
  const handleCapture = useCallback(
-   () => {
-     setSource(newUrl)
+   (target) => {
+     if(target.files) {
+       if (target.files.length !== 0) {
+         const file = target.files[0];
+         const newUrl = URL.createObjectURL(file)
+         setSource(newUrl)
+       }
+     }
+     
    }
    
  );
