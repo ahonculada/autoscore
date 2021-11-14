@@ -47,7 +47,7 @@ export const WebcamCapture = () => {
 
 	const capture = useCallback(
 		() => {
-			const imageSrc = webcamRef.current.getScreenshot();
+			// const imageSrc = webcamRef.current.getScreenshot();
 			// window.localStorage.setItem('image',imageSrc)
 			// console.log('TYPE OF IMAGESRC'+ typeof(imageSrc));
 			// console.log(imageSrc);
@@ -109,7 +109,7 @@ export const WebcamCapture = () => {
 				</div>
 				<OCR/>
 				
-			</div>
+		</div>
 		</div>
 	);
 };
