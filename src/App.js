@@ -30,7 +30,8 @@ function App () {
             accept="image/*"
             type="file"
             capture="environment"
-            onChange={(e) => handleCapture(e.target)}
+            onChange={(e) => {handleCapture(e.target)
+               e.preventDefault();}}
           />
        {/* <WebcamCapture data = {source}/>  */}
        <OCR data ={pic}/>
